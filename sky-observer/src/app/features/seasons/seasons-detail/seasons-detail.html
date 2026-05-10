@@ -1,0 +1,13 @@
+<section class="detail-panel">
+  <h3>Selected Event</h3>
+
+  @if (!item) {
+    <p>Select an event to view details.</p>
+  } @else {
+    <ul>
+      <li><strong>Event:</strong> {{ item.phenom }}</li>
+      <li><strong>Date:</strong> {{ item.year }}/{{ item.month }}/{{ item.day }}</li>
+      <li><strong>Time:</strong> {{ item.time }}</li>
+    </ul>
+  }
+</section>

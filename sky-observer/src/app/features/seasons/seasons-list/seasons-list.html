@@ -1,0 +1,13 @@
+<section>
+  <h3>Season Events</h3>
+
+  @if (items.length === 0) {
+    <p>No season data yet. Run a search.</p>
+  }
+
+  @for (item of items; track $index) {
+    <button type="button" class="season-item" (click)="onSelect(item)">
+      {{ item.phenom }} - {{ item.year }}/{{ item.month }}/{{ item.day }} {{ item.time }}
+    </button>
+  }
+</section>

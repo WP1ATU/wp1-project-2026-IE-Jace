@@ -1,8 +1,21 @@
-<section>
+<section class="search-shell">
   <h2>Seasons</h2>
   <app-search-form (searchSubmit)="onSearch($event)"></app-search-form>
 
-  @if (lastSearch; as s) {
-    <p>Ready to query seasons for year {{ s.year }}.</p>
+  @if (loading) {
+    <p>Loading seasons...</p>
   }
+
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  <div class="results-layout">
+    <app-seasons-list
+      [items]="seasons"
+      (selectItem)="selected = $event">
+    </app-seasons-list>
+
+    <app-seasons-detail [item]="selected"></app-seasons-detail>
+  </div>
 </section>

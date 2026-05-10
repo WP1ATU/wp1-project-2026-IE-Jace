@@ -1,14 +1,12 @@
 <section class="search-shell">
   <h2>Moon Phases</h2>
-
   <app-search-form (searchSubmit)="onSearch($event)"></app-search-form>
 
-  <div class="results-layout">
-    <app-moon-results-list
-      [items]="phases"
-      (selectItem)="selected = $event">
-    </app-moon-results-list>
+  @if (loading) { <p>Loading moon phases...</p> }
+  @if (errorMessage) { <p class="error">{{ errorMessage }}</p> }
 
+  <div class="results-layout">
+    <app-moon-results-list [items]="phases" (selectItem)="selected = $event"></app-moon-results-list>
     <app-moon-detail-panel [item]="selected"></app-moon-detail-panel>
   </div>
 </section>

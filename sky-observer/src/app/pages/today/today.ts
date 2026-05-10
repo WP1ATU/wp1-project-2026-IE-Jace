@@ -1,6 +1,7 @@
 import { JsonPipe } from '@angular/common';
-import { Component } from '@angular/core';
-import { UsnoApiService } from '../../core/services/usno-api';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { finalize, timeout } from 'rxjs';
+import { OneDayParams, UsnoApiService } from '../../core/services/usno-api';
 import { SearchForm, SearchParams } from '../../shared/search/search-form/search-form';
 
 @Component({
@@ -14,31 +15,46 @@ export class Today {
   errorMessage = '';
   loading = false;
 
-  constructor(private usnoApi: UsnoApiService) {}
+  constructor(
+    private usnoApi: UsnoApiService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   onSearch(params: SearchParams): void {
-    this.loadTodayData({
+    const request: OneDayParams = {
       date: params.date,
       coords: params.coords,
       tz: params.tz,
       dst: params.dst,
-    });
+    };
+    this.loadTodayData(request);
   }
 
-  loadTodayData(params: { date: string; coords: string; tz?: number; dst?: boolean }): void {
+  loadTodayData(params: OneDayParams): void {
     this.loading = true;
     this.errorMessage = '';
     this.todayData = null;
+    this.cdr.detectChanges();
 
-    this.usnoApi.getOneDay(params).subscribe({
-      next: (data: unknown) => {
-        this.todayData = data;
-        this.loading = false;
-      },
-      error: (err: Error) => {
-        this.errorMessage = err.message || 'Failed to load today data.';
-        this.loading = false;
-      },
-    });
+    this.usnoApi
+      .getOneDay(params)
+      .pipe(
+        timeout(12000),
+        finalize(() => {
+          this.loading = false;
+          this.cdr.detectChanges();
+        })
+      )
+      .subscribe({
+        next: (data: unknown) => {
+          this.todayData = data;
+          this.errorMessage = '';
+          this.cdr.detectChanges();
+        },
+        error: (err: Error) => {
+          this.errorMessage = err.message || 'Failed to load today data.';
+          this.cdr.detectChanges();
+        },
+      });
   }
 }
