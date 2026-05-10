@@ -1,1 +1,8 @@
-<p>moon-phases works!</p>
+<section>
+  <h2>Moon Phases</h2>
+  <app-search-form (searchSubmit)="onSearch($event)"></app-search-form>
+
+  @if (lastSearch; as s) {
+    <p>Captured input: {{ s.date }} | {{ s.coords }} | tz {{ s.tz }} | dst {{ s.dst }}</p>
+  }
+</section>

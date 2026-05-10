@@ -1,1 +1,9 @@
-<p>today works!</p>
+<section>
+  <h2>Today</h2>
+  <app-search-form (searchSubmit)="onSearch($event)"></app-search-form>
+
+  <p>
+    Last search:
+    {{ lastSearch ? (lastSearch.date + ' @ ' + lastSearch.coords) : 'none yet' }}
+  </p>
+</section>

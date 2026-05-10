@@ -1,0 +1,13 @@
+<section>
+  <h3>Moon Phase Results</h3>
+
+  @if (items.length === 0) {
+    <p>No results yet.</p>
+  }
+
+  @for (item of items; track $index) {
+    <button type="button" (click)="onSelect(item)">
+      {{ item.phase }} - {{ item.year }}/{{ item.month }}/{{ item.day }} {{ item.time }}
+    </button>
+  }
+</section>

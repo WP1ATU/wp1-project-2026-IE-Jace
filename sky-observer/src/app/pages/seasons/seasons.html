@@ -1,1 +1,8 @@
-<p>seasons works!</p>
+<section>
+  <h2>Seasons</h2>
+  <app-search-form (searchSubmit)="onSearch($event)"></app-search-form>
+
+  @if (lastSearch; as s) {
+    <p>Ready to query seasons for year {{ s.year }}.</p>
+  }
+</section>

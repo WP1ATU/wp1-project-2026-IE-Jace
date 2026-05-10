@@ -1,0 +1,28 @@
+<form class="search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <label>
+    Date
+    <input type="date" formControlName="date" />
+  </label>
+
+  <label>
+    Year
+    <input type="number" formControlName="year" />
+  </label>
+
+  <label>
+    Coordinates (lat,lon)
+    <input type="text" formControlName="coords" />
+  </label>
+
+  <label>
+    TZ
+    <input type="number" formControlName="tz" />
+  </label>
+
+  <label class="checkbox-row">
+    <input type="checkbox" formControlName="dst" />
+    Daylight saving time
+  </label>
+
+  <button type="submit" [disabled]="searchForm.invalid">Search</button>
+</form>
