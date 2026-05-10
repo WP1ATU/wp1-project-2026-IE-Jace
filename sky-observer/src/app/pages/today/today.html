@@ -2,8 +2,16 @@
   <h2>Today</h2>
   <app-search-form (searchSubmit)="onSearch($event)"></app-search-form>
 
-  <p>
-    Last search:
-    {{ lastSearch ? (lastSearch.date + ' @ ' + lastSearch.coords) : 'none yet' }}
-  </p>
+  @if (loading) {
+    <p>Loading today data...</p>
+  }
+
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  @if (todayData) {
+    <h3>Today API Result</h3>
+    <pre>{{ todayData | json }}</pre>
+  }
 </section>

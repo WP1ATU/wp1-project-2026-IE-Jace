@@ -1,1 +1,13 @@
-<p>moon-detail-panel works!</p>
+<section class="detail-panel">
+  <h3>Selected Phase</h3>
+
+  @if (!item) {
+    <p>Select a result to view details.</p>
+  } @else {
+    <ul>
+      <li><strong>Phase:</strong> {{ item.phase }}</li>
+      <li><strong>Date:</strong> {{ item.year }}/{{ item.month }}/{{ item.day }}</li>
+      <li><strong>Time:</strong> {{ item.time }}</li>
+    </ul>
+  }
+</section>

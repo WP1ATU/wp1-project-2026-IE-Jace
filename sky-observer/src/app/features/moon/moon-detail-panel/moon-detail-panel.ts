@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { MoonPhaseItem } from '../../../shared/models/usno.models';
 
 @Component({
   selector: 'app-moon-detail-panel',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './moon-detail-panel.scss',
 })
 export class MoonDetailPanel {
-
+  @Input() item: MoonPhaseItem | null = null;
 }

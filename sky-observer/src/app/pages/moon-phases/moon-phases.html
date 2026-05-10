@@ -1,8 +1,14 @@
-<section>
+<section class="search-shell">
   <h2>Moon Phases</h2>
+
   <app-search-form (searchSubmit)="onSearch($event)"></app-search-form>
 
-  @if (lastSearch; as s) {
-    <p>Captured input: {{ s.date }} | {{ s.coords }} | tz {{ s.tz }} | dst {{ s.dst }}</p>
-  }
+  <div class="results-layout">
+    <app-moon-results-list
+      [items]="phases"
+      (selectItem)="selected = $event">
+    </app-moon-results-list>
+
+    <app-moon-detail-panel [item]="selected"></app-moon-detail-panel>
+  </div>
 </section>
