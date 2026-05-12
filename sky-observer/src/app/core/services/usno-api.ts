@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { MoonPhasesResponse, SeasonsResponse } from '../../shared/models/usno.models';
+import { MoonPhasesResponse, OneDayResponse, SeasonsResponse } from '../../shared/models/usno.models';
 
 export interface OneDayParams {
   date: string;
@@ -26,7 +26,7 @@ export class UsnoApiService {
     return this.http.get<MoonPhasesResponse>(`${environment.apiBaseUrl}/usno/moon/phases/year`, { params });
   }
 
-  getOneDay(params: OneDayParams): Observable<unknown> {
+  getOneDay(params: OneDayParams): Observable<OneDayResponse> {
     let httpParams = new HttpParams()
       .set('date', params.date)
       .set('coords', params.coords);
@@ -36,7 +36,7 @@ export class UsnoApiService {
 
     httpParams = this.withNoCache(httpParams);
 
-    return this.http.get<unknown>(`${environment.apiBaseUrl}/usno/rstt/oneday`, { params: httpParams });
+    return this.http.get<OneDayResponse>(`${environment.apiBaseUrl}/usno/rstt/oneday`, { params: httpParams });
   }
 
   getSeasons(params: { year: number; tz?: number; dst?: boolean }): Observable<SeasonsResponse> {

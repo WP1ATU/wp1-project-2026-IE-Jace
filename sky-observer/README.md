@@ -1,3 +1,76 @@
+# Sky Observer
+
+Sky Observer is an Angular + Express + MongoDB application for exploring USNO astronomy data:
+- Moon phases by year
+- One-day sun/moon data
+- Seasons events by year
+
+## Tech Stack
+- Angular (standalone components + routing + SCSS)
+- Express (REST proxy/API layer)
+- MongoDB Atlas (saved locations + recent lookups)
+
+## Project Structure
+- `src/` - Angular frontend
+- `server/src/` - Express backend
+- `docs/` - report support files (implementation explanation, architecture diagram, screencast outline)
+
+## Local Setup
+
+### 1) Backend `.env`
+Create `server/.env` with:
+
+```env
+PORT=3000
+MONGODB_URI=mongodb+srv://<user>:<pass>@<cluster>/<db>
+USNO_BASE_URL=https://aa.usno.navy.mil/api
+USNO_STUB=true
+```
+
+### 2) Install dependencies
+
+```bash
+# frontend
+npm install
+
+# backend
+cd server
+npm install
+```
+
+### 3) Run backend
+
+```bash
+cd server
+npm run dev
+```
+
+### 4) Run frontend
+
+```bash
+npm start
+```
+
+## Testing
+
+```bash
+# frontend tests
+npm test -- --watch=false
+
+# backend tests
+cd server
+npm test
+```
+
+## API Endpoints
+- `GET /api/health`
+- `GET /api/usno/moon/phases/year?year=2026`
+- `GET /api/usno/rstt/oneday?date=YYYY-MM-DD&coords=lat,lon&tz=0&dst=false`
+- `GET /api/usno/seasons?year=2026&tz=0&dst=false`
+- `GET /api/locations`
+- `POST /api/locations`
+- `GET /api/lookups`
+- `POST /api/lookups`
 # SkyObserver
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.

@@ -4,6 +4,7 @@
 
   @if (loading) { <p>Loading moon phases...</p> }
   @if (errorMessage) { <p class="error">{{ errorMessage }}</p> }
+  @if (lookupSaveError) { <p class="error">{{ lookupSaveError }}</p> }
 
   <div class="results-layout">
     <app-moon-results-list [items]="phases" (selectItem)="selected = $event"></app-moon-results-list>

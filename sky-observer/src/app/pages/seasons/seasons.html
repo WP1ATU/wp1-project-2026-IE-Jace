@@ -10,6 +10,10 @@
     <p class="error">{{ errorMessage }}</p>
   }
 
+  @if (lookupSaveError) {
+    <p class="error">{{ lookupSaveError }}</p>
+  }
+
   <div class="results-layout">
     <app-seasons-list
       [items]="seasons"

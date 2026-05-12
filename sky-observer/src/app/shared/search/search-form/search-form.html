@@ -1,4 +1,4 @@
-<form class="search-form" [formGroup]="searchForm">
+<form class="search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <label>
     Date
     <input type="date" formControlName="date" />
@@ -11,7 +11,7 @@
 
   <label>
     Coordinates (lat,lon)
-    <input type="text" formControlName="coords" />
+    <input type="text" formControlName="coords" placeholder="51.50,-0.12" />
   </label>
 
   <label>
@@ -24,5 +24,9 @@
     Daylight saving time
   </label>
 
-  <button type="button" (click)="onSubmit()" [disabled]="searchForm.invalid">Search</button>
+  <button type="submit" [disabled]="searchForm.invalid">Search</button>
+
+  @if (searchForm.invalid && (searchForm.touched || searchForm.dirty)) {
+    <p class="error">Please fix invalid fields before searching.</p>
+  }
 </form>

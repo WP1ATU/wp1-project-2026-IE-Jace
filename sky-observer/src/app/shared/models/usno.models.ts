@@ -22,3 +22,26 @@ export interface SeasonItem {
 export interface SeasonsResponse {
   data: SeasonItem[];
 }
+
+export interface OneDaySunData {
+  rise?: string;
+  set?: string;
+}
+
+export interface OneDayMoonData {
+  rise?: string;
+  set?: string;
+  phase?: string;
+}
+
+export interface OneDayResponse {
+  source?: string;
+  input?: {
+    date?: string;
+    coords?: string;
+    tz?: number | string;
+    dst?: boolean | string;
+  };
+  sun?: OneDaySunData;
+  moon?: OneDayMoonData;
+}

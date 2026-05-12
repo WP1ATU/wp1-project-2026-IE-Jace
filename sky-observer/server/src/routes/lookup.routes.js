@@ -17,6 +17,9 @@ router.post('/', async (req, res, next) => {
     if (!kind || !refLabel || !dateOrYear) {
       return res.status(400).json({ ok: false, message: 'kind, refLabel, dateOrYear are required' });
     }
+    if (!['phase', 'day', 'season'].includes(kind)) {
+      return res.status(400).json({ ok: false, message: 'kind must be one of: phase, day, season' });
+    }
 
     const created = await Lookup.create({
       kind,

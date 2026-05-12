@@ -35,4 +35,34 @@ body {
   margin: 0;
   height: 100%;
 }
-/* You can add global styles to this file, and also import other style files */
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.home-secondary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.results-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+@media (max-width: 960px) {
+  .home-cards,
+  .home-secondary-grid,
+  .results-layout {
+    grid-template-columns: 1fr;
+  }
+}

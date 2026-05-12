@@ -2,6 +2,18 @@
 <app-feature-cards></app-feature-cards>
 
 <div class="home-secondary-grid">
-  <app-saved-locations></app-saved-locations>
-  <app-recent-lookups></app-recent-lookups>
+  <app-saved-locations
+    [locations]="locations"
+    [loading]="loadingLocations"
+    [saving]="savingLocation"
+    [errorMessage]="locationErrorMessage"
+    [saveMessage]="locationSaveMessage"
+    (createLocation)="onCreateLocation($event)">
+  </app-saved-locations>
+
+  <app-recent-lookups
+    [lookups]="lookups"
+    [loading]="loadingLookups"
+    [errorMessage]="lookupErrorMessage">
+  </app-recent-lookups>
 </div>

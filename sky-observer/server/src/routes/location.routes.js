@@ -17,12 +17,29 @@ router.post('/', async (req, res, next) => {
     if (!label || lat === undefined || lon === undefined || tz === undefined) {
       return res.status(400).json({ ok: false, message: 'label, lat, lon, tz are required' });
     }
+    const parsedLat = Number(lat);
+    const parsedLon = Number(lon);
+    const parsedTz = Number(tz);
+
+    if (
+      Number.isNaN(parsedLat) ||
+      Number.isNaN(parsedLon) ||
+      Number.isNaN(parsedTz) ||
+      parsedLat < -90 ||
+      parsedLat > 90 ||
+      parsedLon < -180 ||
+      parsedLon > 180 ||
+      parsedTz < -12 ||
+      parsedTz > 14
+    ) {
+      return res.status(400).json({ ok: false, message: 'Invalid lat/lon/tz values' });
+    }
 
     const created = await Location.create({
       label,
-      lat: Number(lat),
-      lon: Number(lon),
-      tz: Number(tz),
+      lat: parsedLat,
+      lon: parsedLon,
+      tz: parsedTz,
       dstDefault: Boolean(dstDefault),
     });
 

@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { finalize, timeout } from 'rxjs';
+import { PersistenceApiService } from '../../core/services/persistence-api';
 import { SeasonsDetail } from '../../features/seasons/seasons-detail/seasons-detail';
 import { SeasonsList } from '../../features/seasons/seasons-list/seasons-list';
 import { UsnoApiService } from '../../core/services/usno-api';
@@ -17,9 +18,11 @@ export class Seasons {
   selected: SeasonItem | null = null;
   loading = false;
   errorMessage = '';
+  lookupSaveError = '';
 
   constructor(
     private usnoApi: UsnoApiService,
+    private persistenceApi: PersistenceApiService,
     private cdr: ChangeDetectorRef
   ) {}
 
@@ -48,11 +51,28 @@ export class Seasons {
           this.seasons = res.data ?? [];
           this.selected = this.seasons[0] ?? null;
           this.errorMessage = '';
+          this.recordLookup(year);
           this.cdr.detectChanges();
         },
         error: (err: Error) => {
           this.errorMessage = err.message || 'Failed to load seasons.';
           this.cdr.detectChanges();
+        },
+      });
+  }
+
+  private recordLookup(year: number): void {
+    this.lookupSaveError = '';
+    this.persistenceApi
+      .createLookup({
+        kind: 'season',
+        refLabel: 'Seasons search',
+        dateOrYear: String(year),
+        notes: 'Recorded automatically from Seasons page',
+      })
+      .subscribe({
+        error: () => {
+          this.lookupSaveError = 'Result loaded, but recent-history save failed.';
         },
       });
   }

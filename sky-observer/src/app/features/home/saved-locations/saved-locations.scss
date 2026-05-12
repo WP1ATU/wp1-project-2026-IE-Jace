@@ -1,0 +1,36 @@
+.location-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.checkbox-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+button {
+  width: fit-content;
+  padding: 0.45rem 0.8rem;
+}
+
+ul {
+  margin: 0.7rem 0 0;
+  padding-left: 1rem;
+}
+
+li {
+  margin-bottom: 0.35rem;
+}
+
+.success {
+  color: #166534;
+}

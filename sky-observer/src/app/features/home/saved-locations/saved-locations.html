@@ -1,7 +1,62 @@
 <section>
   <h3>Saved Locations</h3>
-  <ul>
-    <li>London (51.50, -0.12)</li>
-    <li>Dublin (53.35, -6.26)</li>
-  </ul>
+
+  <form class="location-form" [formGroup]="createForm" (ngSubmit)="onCreateLocation()">
+    <label>
+      Label
+      <input type="text" formControlName="label" />
+    </label>
+
+    <label>
+      Latitude
+      <input type="number" formControlName="lat" step="0.01" />
+    </label>
+
+    <label>
+      Longitude
+      <input type="number" formControlName="lon" step="0.01" />
+    </label>
+
+    <label>
+      TZ
+      <input type="number" formControlName="tz" step="0.5" />
+    </label>
+
+    <label class="checkbox-row">
+      <input type="checkbox" formControlName="dstDefault" />
+      DST default
+    </label>
+
+    <button type="submit" [disabled]="createForm.invalid || saving">
+      {{ saving ? 'Saving...' : 'Save Location' }}
+    </button>
+  </form>
+
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  @if (saveMessage) {
+    <p class="success">{{ saveMessage }}</p>
+  }
+
+  @if (loading) {
+    <p>Loading saved locations...</p>
+  }
+
+  @if (!loading && locations.length === 0) {
+    <p>No saved locations yet.</p>
+  }
+
+  @if (locations.length > 0) {
+    <ul>
+      @for (location of locations; track location._id ?? location.label) {
+        <li>
+          <strong>{{ location.label }}</strong>
+          ({{ location.lat }}, {{ location.lon }}) TZ {{ location.tz }}
+          <span> DST default: {{ location.dstDefault ? 'Yes' : 'No' }}</span>
+        </li>
+      }
+    </ul>
+  }
 </section>

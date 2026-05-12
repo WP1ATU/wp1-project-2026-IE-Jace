@@ -10,8 +10,30 @@
     <p class="error">{{ errorMessage }}</p>
   }
 
+  @if (lookupSaveError) {
+    <p class="error">{{ lookupSaveError }}</p>
+  }
+
   @if (todayData) {
-    <h3>Today API Result</h3>
-    <pre>{{ todayData | json }}</pre>
+    <section class="today-grid">
+      <article class="today-card">
+        <h3>Request</h3>
+        <p><strong>Date:</strong> {{ todayData.input?.date || 'N/A' }}</p>
+        <p><strong>Coords:</strong> {{ todayData.input?.coords || 'N/A' }}</p>
+      </article>
+
+      <article class="today-card">
+        <h3>Sun</h3>
+        <p><strong>Rise:</strong> {{ todayData.sun?.rise || 'N/A' }}</p>
+        <p><strong>Set:</strong> {{ todayData.sun?.set || 'N/A' }}</p>
+      </article>
+
+      <article class="today-card">
+        <h3>Moon</h3>
+        <p><strong>Rise:</strong> {{ todayData.moon?.rise || 'N/A' }}</p>
+        <p><strong>Set:</strong> {{ todayData.moon?.set || 'N/A' }}</p>
+        <p><strong>Phase:</strong> {{ todayData.moon?.phase || 'N/A' }}</p>
+      </article>
+    </section>
   }
 </section>
