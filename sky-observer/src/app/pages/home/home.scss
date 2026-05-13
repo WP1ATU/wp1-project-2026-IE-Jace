@@ -1,4 +1,4 @@
-section {
+section:not(.card) {
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   padding: 1rem;

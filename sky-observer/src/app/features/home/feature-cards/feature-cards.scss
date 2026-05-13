@@ -1,16 +1,8 @@
-.feature-card h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+.feature-card .card-body {
+  gap: 0.45rem;
 }
 
 .feature-card p {
   margin: 0 0 0.8rem;
   min-height: 2.8rem;
-}
-
-.feature-card a {
-  display: inline-block;
-  text-decoration: none;
-  color: #0c4a6e;
-  font-weight: 600;
 }

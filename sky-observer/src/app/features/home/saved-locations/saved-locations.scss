@@ -1,36 +1,39 @@
 .location-form {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
-  gap: 0.6rem;
   margin-bottom: 0.8rem;
 }
 
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+.location-form .form-label {
+  margin-bottom: 0;
+  font-weight: 600;
+}
+
+.location-form .form-label span {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 500;
 }
 
 .checkbox-row {
-  flex-direction: row;
+  display: flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.65rem;
+  padding-left: 0;
 }
 
-button {
-  width: fit-content;
-  padding: 0.45rem 0.8rem;
+.checkbox-row .form-check-input {
+  margin: 0;
 }
 
-ul {
-  margin: 0.7rem 0 0;
-  padding-left: 1rem;
-}
-
-li {
-  margin-bottom: 0.35rem;
+.list-group-item {
+  background: transparent;
+  border-left: 0;
+  border-right: 0;
 }
 
 .success {
   color: #166534;
+}
+
+.error {
+  color: #b91c1c;
 }

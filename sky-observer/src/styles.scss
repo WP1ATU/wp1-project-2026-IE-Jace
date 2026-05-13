@@ -24,15 +24,10 @@ body {
 }
 
 .home-cards {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr));
-  gap: 1rem;
+  margin-bottom: 0.25rem;
 }
 
 .home-secondary-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(260px, 1fr));
-  gap: 1rem;
   margin-top: 1rem;
 }
 
@@ -47,8 +42,6 @@ body {
 }
 
 @media (max-width: 960px) {
-  .home-cards,
-  .home-secondary-grid,
   .results-layout {
     grid-template-columns: 1fr;
   }

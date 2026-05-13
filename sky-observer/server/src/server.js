@@ -5,7 +5,16 @@ const mongoose = require('mongoose');
 
 const app = express();
 app.disable('etag');
-app.use(cors());
+const corsOrigin = process.env.CORS_ORIGIN?.trim();
+if (corsOrigin && corsOrigin !== '*') {
+  const allowedOrigins = corsOrigin
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+  app.use(cors({ origin: allowedOrigins }));
+} else {
+  app.use(cors());
+}
 app.use(express.json());
 app.use((_req, res, next) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');

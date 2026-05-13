@@ -1,18 +1,18 @@
-<header class="top-shell">
-  <h1>Sky Observer</h1>
-  <nav>
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/moon-phases" routerLinkActive="active">Moon Phases</a>
-    <a routerLink="/today" routerLinkActive="active">Today</a>
-    <a routerLink="/seasons" routerLinkActive="active">Seasons</a>
-    <a routerLink="/about" routerLinkActive="active">About</a>
+<header class="top-shell navbar navbar-expand-lg bg-body-tertiary px-3 py-2">
+  <h1 class="navbar-brand mb-0">Sky Observer</h1>
+  <nav class="nav nav-pills flex-wrap gap-2">
+    <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a class="nav-link" routerLink="/moon-phases" routerLinkActive="active">Moon Phases</a>
+    <a class="nav-link" routerLink="/today" routerLinkActive="active">Today</a>
+    <a class="nav-link" routerLink="/seasons" routerLinkActive="active">Seasons</a>
+    <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
   </nav>
 </header>
 
-<main class="page-container">
+<main class="page-container container py-3">
   <router-outlet />
 </main>
 
-<footer class="app-footer">
+<footer class="app-footer text-center text-muted">
   <a href="https://aa.usno.navy.mil/data/api" target="_blank" rel="noreferrer">API credit: USNO</a>
 </footer>

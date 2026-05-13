@@ -1,32 +1,34 @@
-<form class="search-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <label>
-    Date
-    <input type="date" formControlName="date" />
+<form class="search-form row g-3 align-items-end" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <label class="col-md-6 form-label">
+    <span>Date</span>
+    <input class="form-control" type="date" formControlName="date" />
   </label>
 
-  <label>
-    Year
-    <input type="number" formControlName="year" />
+  <label class="col-md-6 form-label">
+    <span>Year</span>
+    <input class="form-control" type="number" formControlName="year" />
   </label>
 
-  <label>
-    Coordinates (lat,lon)
-    <input type="text" formControlName="coords" placeholder="51.50,-0.12" />
+  <label class="col-md-6 form-label">
+    <span>Coordinates (lat,lon)</span>
+    <input class="form-control" type="text" formControlName="coords" placeholder="51.50,-0.12" />
   </label>
 
-  <label>
-    TZ
-    <input type="number" formControlName="tz" />
+  <label class="col-md-6 form-label">
+    <span>TZ</span>
+    <input class="form-control" type="number" formControlName="tz" />
   </label>
 
-  <label class="checkbox-row">
-    <input type="checkbox" formControlName="dst" />
-    Daylight saving time
+  <label class="col-12 checkbox-row form-check">
+    <input class="form-check-input" type="checkbox" formControlName="dst" />
+    <span class="form-check-label">Daylight saving time</span>
   </label>
 
-  <button type="submit" [disabled]="searchForm.invalid">Search</button>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit" [disabled]="searchForm.invalid">Search</button>
+  </div>
 
   @if (searchForm.invalid && (searchForm.touched || searchForm.dirty)) {
-    <p class="error">Please fix invalid fields before searching.</p>
+    <p class="error col-12 mb-0">Please fix invalid fields before searching.</p>
   }
 </form>

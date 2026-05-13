@@ -1,36 +1,31 @@
 :host {
   display: block;
-  font-family: Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   color: #1f2937;
+  background: #f8fafc;
+  min-height: 100vh;
 }
 
 .top-shell {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
   border-bottom: 1px solid #e5e7eb;
 }
 
-nav {
-  display: flex;
-  gap: 0.8rem;
+.navbar-brand {
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
-a {
-  text-decoration: none;
-  color: #374151;
-  padding: 0.3rem 0.5rem;
-  border-radius: 6px;
+nav .nav-link {
+  color: #334155;
+  border-radius: 999px;
 }
 
-a.active {
-  background: #e0f2fe;
-  color: #0c4a6e;
+nav .nav-link.active {
+  background: #0d6efd;
+  color: #ffffff;
 }
 
 .page-container {
-  padding: 1rem;
   min-height: calc(100vh - 132px);
 }
 
@@ -42,17 +37,15 @@ a.active {
 }
 
 .app-footer a {
-  color: #0c4a6e;
+  color: #0d6efd;
 }
 
 @media (max-width: 760px) {
   .top-shell {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
+    align-items: flex-start !important;
   }
 
-  nav {
-    flex-wrap: wrap;
+  .navbar-brand {
+    margin-bottom: 0.5rem;
   }
 }

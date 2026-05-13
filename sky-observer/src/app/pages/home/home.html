@@ -1,19 +1,23 @@
 <app-hero></app-hero>
 <app-feature-cards></app-feature-cards>
 
-<div class="home-secondary-grid">
-  <app-saved-locations
-    [locations]="locations"
-    [loading]="loadingLocations"
-    [saving]="savingLocation"
-    [errorMessage]="locationErrorMessage"
-    [saveMessage]="locationSaveMessage"
-    (createLocation)="onCreateLocation($event)">
-  </app-saved-locations>
+<div class="home-secondary-grid row g-3 mt-1">
+  <div class="col-lg-6">
+    <app-saved-locations
+      [locations]="locations"
+      [loading]="loadingLocations"
+      [saving]="savingLocation"
+      [errorMessage]="locationErrorMessage"
+      [saveMessage]="locationSaveMessage"
+      (createLocation)="onCreateLocation($event)">
+    </app-saved-locations>
+  </div>
 
-  <app-recent-lookups
-    [lookups]="lookups"
-    [loading]="loadingLookups"
-    [errorMessage]="lookupErrorMessage">
-  </app-recent-lookups>
+  <div class="col-lg-6">
+    <app-recent-lookups
+      [lookups]="lookups"
+      [loading]="loadingLookups"
+      [errorMessage]="lookupErrorMessage">
+    </app-recent-lookups>
+  </div>
 </div>

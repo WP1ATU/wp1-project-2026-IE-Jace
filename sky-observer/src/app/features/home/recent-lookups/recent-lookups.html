@@ -1,22 +1,23 @@
-<section>
+<section class="card shadow-sm">
+  <div class="card-body">
   <h3>Recent Lookups</h3>
 
   @if (errorMessage) {
-    <p class="error">{{ errorMessage }}</p>
+    <p class="error alert alert-danger py-2 mb-2">{{ errorMessage }}</p>
   }
 
   @if (loading) {
-    <p>Loading recent lookups...</p>
+    <p class="mb-2">Loading recent lookups...</p>
   }
 
   @if (!loading && lookups.length === 0) {
-    <p>No recent lookups yet.</p>
+    <p class="mb-2">No recent lookups yet.</p>
   }
 
   @if (lookups.length > 0) {
-    <ul>
+    <ul class="list-group list-group-flush">
       @for (lookup of lookups; track lookup._id ?? $index) {
-        <li>
+        <li class="list-group-item px-0">
           <strong>{{ toDisplayType(lookup.kind) }}</strong>
           - {{ lookup.refLabel }} ({{ lookup.dateOrYear }})
           @if (lookup.notes) {
@@ -26,4 +27,5 @@
       }
     </ul>
   }
+  </div>
 </section>

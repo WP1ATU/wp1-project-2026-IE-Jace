@@ -1,57 +1,60 @@
-<section>
+<section class="card shadow-sm">
+  <div class="card-body">
   <h3>Saved Locations</h3>
 
-  <form class="location-form" [formGroup]="createForm" (ngSubmit)="onCreateLocation()">
-    <label>
-      Label
-      <input type="text" formControlName="label" />
+  <form class="location-form row g-3 align-items-end" [formGroup]="createForm" (ngSubmit)="onCreateLocation()">
+    <label class="col-md-6 form-label">
+      <span>Label</span>
+      <input class="form-control" type="text" formControlName="label" />
     </label>
 
-    <label>
-      Latitude
-      <input type="number" formControlName="lat" step="0.01" />
+    <label class="col-md-6 form-label">
+      <span>Latitude</span>
+      <input class="form-control" type="number" formControlName="lat" step="0.01" />
     </label>
 
-    <label>
-      Longitude
-      <input type="number" formControlName="lon" step="0.01" />
+    <label class="col-md-6 form-label">
+      <span>Longitude</span>
+      <input class="form-control" type="number" formControlName="lon" step="0.01" />
     </label>
 
-    <label>
-      TZ
-      <input type="number" formControlName="tz" step="0.5" />
+    <label class="col-md-6 form-label">
+      <span>TZ</span>
+      <input class="form-control" type="number" formControlName="tz" step="0.5" />
     </label>
 
-    <label class="checkbox-row">
-      <input type="checkbox" formControlName="dstDefault" />
-      DST default
+    <label class="col-12 checkbox-row form-check">
+      <input class="form-check-input" type="checkbox" formControlName="dstDefault" />
+      <span class="form-check-label">DST default</span>
     </label>
 
-    <button type="submit" [disabled]="createForm.invalid || saving">
-      {{ saving ? 'Saving...' : 'Save Location' }}
-    </button>
+    <div class="col-12">
+      <button class="btn btn-success" type="submit" [disabled]="createForm.invalid || saving">
+        {{ saving ? 'Saving...' : 'Save Location' }}
+      </button>
+    </div>
   </form>
 
   @if (errorMessage) {
-    <p class="error">{{ errorMessage }}</p>
+    <p class="error alert alert-danger py-2 mb-2">{{ errorMessage }}</p>
   }
 
   @if (saveMessage) {
-    <p class="success">{{ saveMessage }}</p>
+    <p class="success alert alert-success py-2 mb-2">{{ saveMessage }}</p>
   }
 
   @if (loading) {
-    <p>Loading saved locations...</p>
+    <p class="mb-2">Loading saved locations...</p>
   }
 
   @if (!loading && locations.length === 0) {
-    <p>No saved locations yet.</p>
+    <p class="mb-2">No saved locations yet.</p>
   }
 
   @if (locations.length > 0) {
-    <ul>
+    <ul class="list-group list-group-flush">
       @for (location of locations; track location._id ?? location.label) {
-        <li>
+        <li class="list-group-item px-0">
           <strong>{{ location.label }}</strong>
           ({{ location.lat }}, {{ location.lon }}) TZ {{ location.tz }}
           <span> DST default: {{ location.dstDefault ? 'Yes' : 'No' }}</span>
@@ -59,4 +62,5 @@
       }
     </ul>
   }
+  </div>
 </section>

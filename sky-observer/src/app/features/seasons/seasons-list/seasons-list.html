@@ -6,7 +6,7 @@
   }
 
   @for (item of items; track $index) {
-    <button type="button" class="season-item" (click)="onSelect(item)">
+    <button type="button" class="season-item btn btn-outline-secondary w-100 text-start mb-2" (click)="onSelect(item)">
       {{ item.phenom }} - {{ item.year }}/{{ item.month }}/{{ item.day }} {{ item.time }}
     </button>
   }
